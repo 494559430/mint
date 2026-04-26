@@ -155,16 +155,21 @@ function copyToClipboard(songName) {
 let toastTimer = null;
 // Show toast notification
 function showToast(message) {
-    if (!toast) return;
+    const toastElement = document.getElementById('toast');
+    if (!toastElement) {
+        console.error('Toast element not found!');
+        return;
+    }
     
-    toast.textContent = message;
-    toast.classList.add('show');
+    console.log('Showing toast:', message); // 调试日志
+    toastElement.textContent = message;
+    toastElement.classList.add('show');
     
     // 清除之前的定时器，防止快速点击时提示闪烁消失
     if (toastTimer) clearTimeout(toastTimer);
     
     toastTimer = setTimeout(() => {
-        toast.classList.remove('show');
+        toastElement.classList.remove('show');
         toastTimer = null;
     }, 2000);
 }

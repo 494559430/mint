@@ -287,23 +287,26 @@ body {
 /* Toast styling */
 .toast {
     position: fixed;
-    bottom: 30px;
+    bottom: 50px; /* 稍微调高一点，避免被某些移动端浏览器底栏遮挡 */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(20px); /* 初始位置稍微下移，做入场动画 */
     background-color: var(--primary-teal);
     color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 12px 30px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s;
-    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 增加弹性动画 */
+    z-index: 9999; /* 确保在最上层 */
+    white-space: nowrap;
+    pointer-events: none; /* 防止遮挡下方点击 */
 }
 
 .toast.show {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) translateY(0); /* 回到正常位置 */
 }
 
 /* Responsive adjustments */
