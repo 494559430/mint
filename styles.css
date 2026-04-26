@@ -1,0 +1,333 @@
+:root {
+    --primary-teal: #198d8d;
+    --paper-bg: #f5f1e9;
+    --paper-texture: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    --text-dark: #333;
+    --text-muted: #666;
+    --accent-red: #d9534f;
+    --border-color: #dcd0c0;
+    --hover-bg: #ece5d8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: rgba(245, 241, 233, 0.95);
+    background-image: var(--paper-texture);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+}
+
+/* Background decoration inspired by image 1 */
+.background-decor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, var(--primary-teal), #4db6ac, var(--primary-teal));
+}
+
+.header {
+    border-bottom: 2px solid var(--primary-teal);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar-link {
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.avatar-link:hover {
+    transform: scale(1.05);
+}
+
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-teal);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.singer-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+}
+
+.singer-title {
+    font-size: 1.1rem;
+    color: var(--primary-teal);
+}
+
+.singer-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--accent-red);
+    color: white;
+    padding: 2px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    transition: all 0.3s;
+}
+
+.live-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(217, 83, 79, 0.5);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.confidential-stamp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 3px solid var(--accent-red);
+    color: var(--accent-red);
+    padding: 5px 10px;
+    font-weight: bold;
+    transform: rotate(15deg);
+    opacity: 0.7;
+    font-family: 'Courier New', Courier, monospace;
+    pointer-events: none;
+}
+
+.intro-text {
+    font-style: italic;
+    color: var(--text-muted);
+    border-left: 3px solid var(--border-color);
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.search-section {
+    margin-bottom: 30px;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 45px 15px 20px;
+    font-size: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--primary-teal);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(25, 141, 141, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-btn {
+    padding: 5px 15px;
+    border: 1px solid var(--primary-teal);
+    background: transparent;
+    color: var(--primary-teal);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.tag-btn:hover, .tag-btn.active {
+    background-color: var(--primary-teal);
+    color: white;
+}
+
+.playlist-section {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.playlist-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 2fr;
+    background-color: var(--hover-bg);
+    padding: 12px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.song-list {
+    list-style: none;
+}
+
+.song-item {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 2fr;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+    cursor: pointer;
+    align-items: center;
+}
+
+.song-item:last-child {
+    border-bottom: none;
+}
+
+.song-item:hover {
+    background-color: #f9f7f2;
+}
+
+.song-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.song-author {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.song-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.mini-tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    background-color: #f0f0f0;
+    color: var(--text-muted);
+    border-radius: 10px;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+/* Toast styling */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-teal);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .playlist-header, .song-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    
+    .playlist-header {
+        display: none;
+    }
+    
+    .song-item {
+        padding: 15px;
+    }
+    
+    .song-name::before {
+        content: "歌名: ";
+        font-weight: normal;
+        color: var(--text-muted);
+    }
+    
+    .song-author::before {
+        content: "歌手: ";
+    }
+}

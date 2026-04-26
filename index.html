@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萨其拉-mint 歌单搜索</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Background decorative elements -->
+        <div class="background-decor"></div>
+        
+        <header class="header">
+            <div class="profile-card">
+                <a href="https://space.bilibili.com/3690985020197386" target="_blank" class="avatar-link">
+                    <img src="header.jpg" alt="萨其拉-mint 头像" class="avatar-img">
+                </a>
+                <div class="profile-info">
+                    <h1 class="singer-name">萨其拉-mint</h1>
+                    <div class="singer-meta">
+                        <p class="singer-title">草原歌手 | 蒙语歌者</p>
+                        <a href="https://live.bilibili.com/1713821540/" target="_blank" class="live-link" title="进入直播间">
+                            <span class="live-icon">📡</span>
+                            <span class="live-text">正在直播</span>
+                        </a>
+                    </div>
+                    <div class="confidential-stamp">CONFIDENTIAL / 绝密资料</div>
+                </div>
+            </div>
+            <div class="intro-text">
+                "愿我的歌声，像草原的晨风一样温柔。住每一个清晨赶路的你。"
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="search-section">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="输入歌名、标签或关键词进行搜索...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="tags-container" id="tagsContainer">
+                    <!-- Tags will be dynamically generated here -->
+                </div>
+            </section>
+
+            <section class="playlist-section">
+                <div class="playlist-header">
+                    <span class="col-name">歌名</span>
+                    <span class="col-author">歌手</span>
+                    <span class="col-tags">标签</span>
+                </div>
+                <ul class="song-list" id="songList">
+                    <!-- Songs will be dynamically listed here -->
+                </ul>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 萨其拉-mint 音乐工作室. 所有的遇见都是久别重逢。</p>
+        </footer>
+
+        <!-- Toast notification for copy action -->
+        <div id="toast" class="toast">已复制: 点歌 [歌名]</div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
