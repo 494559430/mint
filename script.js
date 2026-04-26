@@ -76,7 +76,14 @@ function renderSongs() {
             <div class="song-tags">${tagsHtml}</div>
         `;
         
-        li.onclick = () => copyToClipboard(song.name);
+        li.onclick = () => {
+            copyToClipboard(song.name);
+            // 增加点击反馈效果
+            li.style.backgroundColor = 'var(--hover-bg)';
+            setTimeout(() => {
+                li.style.backgroundColor = '';
+            }, 200);
+        };
         songList.appendChild(li);
     });
 }
@@ -99,35 +106,66 @@ function filterPlaylist() {
     renderSongs();
 }
 
-// Copy to clipboard function
-async function copyToClipboard(songName) {
+// 优化的复制到剪贴板功能
+function copyToClipboard(songName) {
     const textToCopy = `点歌 ${songName}`;
     
-    try {
-        await navigator.clipboard.writeText(textToCopy);
-        showToast(`已复制: ${textToCopy}`);
-    } catch (err) {
-        // Fallback for older browsers
+    // 内部通用复制方法
+    const attemptCopy = (text) => {
         const textArea = document.createElement("textarea");
-        textArea.value = textToCopy;
+        textArea.value = text;
+        // 确保 textarea 不可见但可操作
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
         document.body.appendChild(textArea);
+        textArea.focus();
         textArea.select();
+        
+        let successful = false;
         try {
-            document.execCommand('copy');
-            showToast(`已复制: ${textToCopy}`);
-        } catch (copyErr) {
-            console.error('Copy failed:', copyErr);
+            successful = document.execCommand('copy');
+        } catch (err) {
+            console.error('Fallback copy failed:', err);
         }
         document.body.removeChild(textArea);
+        return successful;
+    };
+
+    // 优先使用现代 Clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => showToast(`已复制: ${textToCopy}`))
+            .catch(err => {
+                console.warn('Clipboard API failed, trying fallback:', err);
+                if (attemptCopy(textToCopy)) {
+                    showToast(`已复制: ${textToCopy}`);
+                }
+            });
+    } else {
+        // 环境不支持时直接使用 fallback
+        if (attemptCopy(textToCopy)) {
+            showToast(`已复制: ${textToCopy}`);
+        } else {
+            alert('复制失败，请手动选择复制');
+        }
     }
 }
 
+let toastTimer = null;
 // Show toast notification
 function showToast(message) {
+    if (!toast) return;
+    
     toast.textContent = message;
     toast.classList.add('show');
-    setTimeout(() => {
+    
+    // 清除之前的定时器，防止快速点击时提示闪烁消失
+    if (toastTimer) clearTimeout(toastTimer);
+    
+    toastTimer = setTimeout(() => {
         toast.classList.remove('show');
+        toastTimer = null;
     }, 2000);
 }
 

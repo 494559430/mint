@@ -234,9 +234,13 @@ body {
     grid-template-columns: 2fr 1.5fr 2fr;
     padding: 12px 20px;
     border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.1s;
     cursor: pointer;
     align-items: center;
+}
+
+.song-item:active {
+    transform: scale(0.98);
 }
 
 .song-item:last-child {
